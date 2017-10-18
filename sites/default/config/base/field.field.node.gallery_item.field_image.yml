@@ -1,0 +1,38 @@
+uuid: 6f5beb40-7e3d-4f09-ac34-a06c73e081ef
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_image
+    - node.type.gallery_item
+  module:
+    - image
+id: node.gallery_item.field_image
+field_name: field_image
+entity_type: node
+bundle: gallery_item
+label: Image
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_directory: 'gallery-item/[date:custom:Y]-[date:custom:m]'
+  file_extensions: 'png gif jpg jpeg'
+  max_filesize: ''
+  max_resolution: ''
+  min_resolution: ''
+  alt_field: true
+  alt_field_required: true
+  title_field: false
+  title_field_required: false
+  default_image:
+    uuid: 2bd261ff-1dc6-49fb-a447-b0bfffdeb87f
+    alt: Food
+    title: ''
+    width: 2000
+    height: 1092
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: image
