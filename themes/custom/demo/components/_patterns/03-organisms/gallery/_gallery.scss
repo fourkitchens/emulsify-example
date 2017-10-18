@@ -1,0 +1,8 @@
+.gallery-item__grid {
+  @include grid;
+  @include margin;
+}
+
+.gallery-item--grid-item {
+  @include grid-item(3);
+}

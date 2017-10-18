@@ -1,0 +1,12 @@
+grid_blockname:
+  gallery-item
+images:
+  1:
+    image_modifiers:
+      1: "grid-item"
+  2:
+    image_modifiers:
+      1: "grid-item"
+  3:
+    image_modifiers:
+      1: "grid-item"

@@ -1,0 +1,25 @@
+{#
+/**
+ * Available variables:
+ * - image_base_class - base class name
+ */
+#}
+
+{% embed "@base/layouts/grid/00-grid.twig" %}
+
+{% block grid_content %}
+  {# Drupal content #}
+  {% if grid_content %}
+    {{ grid_content }}
+  {# PL content in YAML #}
+  {% else %}
+    {% for image in images %}
+      {% include "@molecules/gallery-item/gallery-item.twig" with {
+        "image_blockname": image.blockname,
+        "gi_modifiers": image.image_modifiers,
+      } %}
+    {% endfor %}
+  {% endif %}
+{% endblock %}
+
+{% endembed %}

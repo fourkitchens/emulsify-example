@@ -1,0 +1,54 @@
+{#
+/**
+ * Available variables:
+ * - image_base_class - base class name
+ * - image_link_base_class - base class override for link
+ * - img_url - url for linked image
+ * - image_link_modifiers - modifiers for image link
+ * - image_link_base_class - base class for the image link
+ * - image_link_attributes - attributes key/value pair for link attributes
+ * - image_modifiers - array of modifiers to add to the base classname
+ * - image_blockname - blockname prepended to the base classname
+ * - img_src - the actual image file location
+ * - img_alt - (optional) the alt text for screen readers and when the image cannot load
+ */
+#}
+{% set gi_base_class = gi_base_class|default('gallery-item') %}
+{%
+  set bem = bem(gi_base_class, (gi_modifiers), gi_blockname)
+%}
+{%
+  set classes = [
+    'node',
+    'node--type-' ~ node.bundle|clean_class,
+    node.isPromoted() ? 'node--promoted',
+    node.isSticky() ? 'node--sticky',
+    not node.isPublished() ? 'node--unpublished',
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+    bem,
+  ]
+%}
+{% set additional_attributes = {
+  "class": classes,
+} %}
+
+{# kint(content) #}
+<article {{ add_attributes(additional_attributes) }}>
+  <div{{ content_attributes.addClass('node__content') }}>
+    {% block gi_img %}
+      <div class="gallery-item__image">
+      {# Drupal content #}
+      {% if gi_img %}
+        {{ gi_img|raw }}
+      {# PL content in YAML #}
+      {% else %}
+        {% include "@atoms/04-images/00-image/image.twig" with {
+          "img_src": img_src|default("https://placeimg.com/1200/800/tech"),
+          "img_alt": "Alt text",
+          "img_url": "#",
+        } %}
+      {% endif %}
+      </div>
+    {% endblock %}
+  </div>
+</article>
